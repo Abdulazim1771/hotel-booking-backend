@@ -26,4 +26,4 @@ Open [the liveness endpoint](http://127.0.0.1:5080/health/live) to check that th
 - [API behavior](docs/api-behavior.md) records the planned frontend integration.
 - [Decisions](docs/decisions/0001-reservations-own-inventory.md), [runbooks](docs/runbooks/), and [performance](docs/performance/README.md) explain design choices, recovery, and measurements.
 - [Load tests](tests/load/README.md) outlines the first k6 scenarios.
-- [Sample projects](microservices/) contain the earlier Writer, Article, and gateway exercise. The hotel solution is `HotelBooking.sln`.
+- [HotelBooking.sln](HotelBooking.sln) opens the Reservations API in Visual Studio.
