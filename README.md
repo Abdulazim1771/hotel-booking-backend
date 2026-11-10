@@ -1,4 +1,4 @@
-# STILL Hotel Backend
+# Hotel Booking Backend
 
 The .NET 10 backend for a single-hotel booking system. Reservations exposes availability search against PostgreSQL and has controller methods reserved for sign-in, bookings, and staff workflows.
 
