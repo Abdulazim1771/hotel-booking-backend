@@ -1,5 +1,43 @@
 services:
   reservations:
     build: ./services/Reservations
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Reservations: Host=postgres;Database=reservations;Username=reservations
+      PGPASSWORD: ${RESERVATIONS_DB_PASSWORD:?Set RESERVATIONS_DB_PASSWORD in .env}
     ports:
       - "127.0.0.1:5080:8080"
+    volumes:
+      - type: bind
+        source: ./services/Reservations/Reservations.Api/appsettings.json
+        target: /app/appsettings.json
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./services/Reservations/Reservations.Api/appsettings.Development.json
+        target: /app/appsettings.Development.json
+        read_only: true
+        bind:
+          create_host_path: false
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: reservations
+      POSTGRES_USER: reservations
+      POSTGRES_PASSWORD: ${RESERVATIONS_DB_PASSWORD:?Set RESERVATIONS_DB_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - reservations-data:/var/lib/postgresql/data
+      - ./services/Reservations/Reservations.Infrastructure/Database:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "reservations", "-d", "reservations"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+volumes:
+  reservations-data:

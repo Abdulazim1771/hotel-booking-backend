@@ -398,3 +398,17 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Runtime configuration and secrets
+[Aa]ppsettings*.json*
+![Aa]ppsettings*.example.json
+[Ll]aunch[Ss]ettings*.json*
+.env
+.env.*
+!.env.example
+.envrc
+[Ss]ecrets.json
+.pgpass
+*.key
+*.pem
+*.p12
