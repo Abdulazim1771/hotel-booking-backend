@@ -1,2 +1,13 @@
 **/bin
 **/obj
+**/[Aa]ppsettings*.json*
+**/[Ll]aunch[Ss]ettings*.json*
+**/.env
+**/.env.*
+**/.envrc
+**/[Ss]ecrets.json
+**/.pgpass
+**/*.key
+**/*.pem
+**/*.p12
+**/*.[Pp]fx
